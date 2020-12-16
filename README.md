@@ -25,7 +25,7 @@
 
 This interview project you are participating in will help you better demonstrate your level of expertise than if we asked you to code something for us on the fly. You will have time to architect and build something without as much of a time restriction allowing you to showcase your knowledge in a more meaningful way.
 
-Fork this repository on GitLab so that you can commit your changes. Please add us (a list will be supplied) as guests so we can review your commit history and overall work.
+Clone this repsository and submit your changes as a merge request.
 
 Showcase Requirements:
 
