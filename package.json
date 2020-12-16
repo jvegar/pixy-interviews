@@ -8,7 +8,7 @@
     "apps/*"
   ],
   "scripts": {
-    "commit": "cz",
+    "commit": "git add . && cz",
     "affected:deploy": "lerna run --since HEAD^ deploy",
     "affected:test": "lerna run --since HEAD^ test",
     "affected:list": "lerna ls --since HEAD^ -a",
