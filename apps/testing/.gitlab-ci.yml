@@ -1,12 +1,9 @@
----
-to: apps/<%= h.changeCase.param(name) %>/.gitlab-ci.yml
----
 include: 'configs/templates.gitlab-ci.yml'
 
 image: node:lts
 
 variables:
-  APP_PATH: 'apps/<%= h.changeCase.param(name) %>'
+  APP_PATH: 'apps/testing'
 
 stages:
   - test
