@@ -1,5 +1,11 @@
 [![N|Solid](https://shiftpixy.com/wp-content/uploads/2020/01/Logo-with-circle-R-small.png)](https://shiftpixy.com/)
 
+** START HERE! Video Tutorials **
+- Introduction: https://vimeo.com/491698201
+- Local Setup: https://vimeo.com/491703385
+- Project Overview & Deployments: https://vimeo.com/491709483
+
+
 **Table of contents:**
 
 - [Take Home Interview Project](#take-home-interview-project)
