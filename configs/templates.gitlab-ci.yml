@@ -1,0 +1,11 @@
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  policy: pull
+  untracked: true
+
+.env_dev:
+  environment:
+    name: dev
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^bugfix/
+    - if: $CI_COMMIT_REF_NAME =~ /^feature/
