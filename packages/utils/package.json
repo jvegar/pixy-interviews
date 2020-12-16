@@ -1,0 +1,13 @@
+{
+  "name": "@packages/utils",
+  "version": "0.1.0-a",
+  "main": "index.ts",
+  "private": "true",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^1.0.0-rc.3",
+    "@stablelib/aes": "^1.0.0",
+    "@stablelib/hex": "^1.0.0",
+    "@stablelib/siv": "^1.0.0"
+  }
+}

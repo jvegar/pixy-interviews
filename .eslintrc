@@ -1,0 +1,38 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": ["eslint:recommended"],
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "plugins": ["@typescript-eslint"]
+    },
+    {
+      "files": ["**/*.test.js", "**/*.test.ts"],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
+
+  "ignorePatterns": [
+    "node_modules",
+    "_templates",
+    "webpack.config.js",
+    "jest.config.js",
+    "babel.config.js",
+    "serverless.ts"
+  ]
+}

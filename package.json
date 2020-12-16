@@ -1,0 +1,75 @@
+{
+  "name": "monorepo",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "commit": "cz",
+    "affected:deploy": "lerna run --since HEAD^ deploy",
+    "affected:test": "lerna run --since HEAD^ test",
+    "affected:list": "lerna ls --since HEAD^ -a",
+    "new": "hygen",
+    "branch": "hygen branch",
+    "start": "lerna exec sls offline --scope",
+    "test": "jest -c configs/jest.config.js",
+    "lint": "eslint",
+    "lint:fix": "eslint --cache --cache-location .cache/ --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache --cache-location .cache/ --fix",
+    "*.{js,ts,md,json}": "prettier --write"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/aws-lambda": "^8.10.64",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.7",
+    "@types/serverless": "^1.78.8",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "babel-loader": "^8.1.0",
+    "commitizen": "^4.2.2",
+    "core-js": "^3.6.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.11.0",
+    "fork-ts-checker-webpack-plugin": "^5.2.0",
+    "husky": "^4.3.0",
+    "hygen": "^6.0.4",
+    "jest": "^26.6.1",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.4.2",
+    "prettier": "^2.1.2",
+    "serverless": "^2.8.0",
+    "serverless-offline": "^6.8.0",
+    "serverless-webpack": "^5.3.5",
+    "ts-jest": "^26.4.2",
+    "ts-loader": "^8.0.6",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^4.0.3",
+    "webpack": "^5.2.0",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
