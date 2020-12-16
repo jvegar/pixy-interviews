@@ -3,7 +3,7 @@
 ## START HERE! Video Tutorials:
 - Introduction: https://vimeo.com/491698201
 - Local Setup: https://vimeo.com/491703385
-- Project Overview & Deployments: https://vimeo.com/491709483
+- Project Overview & Deployments: https://vimeo.com/491764292
 
 
 **Table of contents:**
