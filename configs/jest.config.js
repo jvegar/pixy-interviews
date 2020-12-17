@@ -5,11 +5,7 @@ module.exports = {
   rootDir: resolve(__dirname, '..'),
   preset: 'ts-jest',
   testEnvironment: 'node',
-  projects: [
-    '<rootDir>/apps/test',
-    '<rootDir>/apps/test',
-    '<rootDir>/apps/test',
-  ],
+  projects: [],
   transform: {
     '\\.js$': 'babel-jest',
   },
