@@ -9,3 +9,5 @@ cache:
   rules:
     - if: $CI_COMMIT_REF_NAME =~ /^bugfix/
     - if: $CI_COMMIT_REF_NAME =~ /^feature/
+  except:
+    - master

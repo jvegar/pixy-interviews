@@ -19,3 +19,5 @@ install:
     policy: pull-push
     paths:
       - node_modules
+  except:
+    - master
