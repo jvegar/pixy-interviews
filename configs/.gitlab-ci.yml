@@ -21,3 +21,11 @@ install:
       - node_modules
   except:
     - master
+#
+pixy-assignment:
+  stage: apps
+  trigger:
+    include: apps/pixy-assignment/.gitlab-ci.yml
+  rules:
+    - changes:
+        - apps/pixy-assignment/**/*

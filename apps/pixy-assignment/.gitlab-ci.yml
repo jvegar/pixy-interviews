@@ -1,0 +1,23 @@
+include: 'configs/templates.gitlab-ci.yml'
+
+image: node:lts
+
+variables:
+  APP_PATH: 'apps/pixy-assignment'
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - yarn lint $APP_PATH
+    - yarn test $APP_PATH
+
+deploy_dev:
+  stage: deploy
+  extends: .env_dev
+  script:
+    - cd $APP_PATH
+    - yarn sls deploy -v
