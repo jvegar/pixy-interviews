@@ -11,7 +11,6 @@ export const main = handler(async (event, context) => {
 
   const result = await dynamoDb.scan(params);
   const feedUriList = [];
-  const dataList = [];
   result.Items.forEach((e) => {
     const feedUri = `${process.env.waqi_baseurl}/${e.country}/${e.city}/${e.station}/?token=${process.env.waqi_token}`;
     feedUriList.push(feedUri);
@@ -46,9 +45,6 @@ export const main = handler(async (event, context) => {
 
     try {
       await dynamoDb.put(params);
-      return {
-        statusCode: 200,
-      };
     } catch (error) {
       return {
         statusCode: 500,
@@ -56,4 +52,7 @@ export const main = handler(async (event, context) => {
       };
     }
   }
+  return {
+    statusCode: 200,
+  };
 });

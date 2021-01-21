@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "serverless": "^2.19.0",
-    "serverless-http": "^2.6.0"
+    "serverless-http": "^2.6.0",
+    "twitter": "^1.7.1"
   }
 }
