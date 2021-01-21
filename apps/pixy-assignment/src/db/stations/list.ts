@@ -6,9 +6,16 @@ export const main = handler(async (event, context) => {
     TableName: process.env.tableNameStations,
   };
 
-  //const result = await dynamoDb.query(params);
-  const result = await dynamoDb.scan(params);
-
-  // Return the matching list of items in response body
-  return result.Items;
+  try {
+    const result = await dynamoDb.scan(params);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result.Items),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
 });

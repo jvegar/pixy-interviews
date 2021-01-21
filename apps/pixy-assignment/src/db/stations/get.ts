@@ -4,18 +4,22 @@ import dynamoDb from '../../libs/dynamodb-lib';
 export const main = handler(async (event, context) => {
   const params = {
     TableName: process.env.tableNameStations,
-    // 'Key' defines the partition key and sort key of the item to be retrieved
     Key: {
-      stationid: event.pathParameters.stationid, // The id of the note from the path
+      stationid: event.pathParameters.stationid,
       idx: event.pathParameters.idx,
     },
   };
 
-  const result = await dynamoDb.get(params);
-  if (!result.Item) {
-    throw new Error('Item not found.');
+  try {
+    const result = await dynamoDb.get(params);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result.Item),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    };
   }
-
-  // Return the retrieved item
-  return result.Item;
 });

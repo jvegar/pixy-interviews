@@ -2,6 +2,7 @@ import handler from '../libs/handler-lib';
 import dynamoDb from '../libs/dynamodb-lib';
 import fetch from 'node-fetch';
 import * as uuid from 'uuid';
+import { Feed_Params } from './../interfaces';
 
 export const main = handler(async (event, context) => {
   const params = {
@@ -11,7 +12,7 @@ export const main = handler(async (event, context) => {
   const result = await dynamoDb.scan(params);
   const feedUriList = [];
   const dataList = [];
-  result.Items.forEach(async (e) => {
+  result.Items.forEach((e) => {
     const feedUri = `${process.env.waqi_baseurl}/${e.country}/${e.city}/${e.station}/?token=${process.env.waqi_token}`;
     feedUriList.push(feedUri);
   });
@@ -20,18 +21,18 @@ export const main = handler(async (event, context) => {
     const response = await fetch(feedUriList[i]);
     const d = await response.json();
     let level = 'Undefined';
+    const aqi = d.data.aqi;
 
-    if (d.data.aqi >= 0 && d.data.aqi <= 50) level = 'Good';
-    if (d.data.aqi > 50 && d.data.aqi <= 100) level = 'Moderate';
-    if (d.data.aqi > 100 && d.data.aqi <= 150) level = 'Unhealthy for Sensitive Groups';
-    if (d.data.aqi > 150 && d.data.aqi <= 200) level = 'Unhealthy';
-    if (d.data.aqi > 200 && d.data.aqi <= 300) level = 'Ver Unhealthy';
-    if (d.data.aqi > 300) level = 'Hazardous';
+    if (aqi >= 0 && aqi <= 50) level = 'Good';
+    if (aqi > 50 && aqi <= 100) level = 'Moderate';
+    if (aqi > 100 && aqi <= 150) level = 'Unhealthy for Sensitive Groups';
+    if (aqi > 150 && aqi <= 200) level = 'Unhealthy';
+    if (aqi > 200 && aqi <= 300) level = 'Very Unhealthy';
+    if (aqi > 300) level = 'Hazardous';
 
-    const params = {
+    const params: Feed_Params = {
       TableName: process.env.tableNameFeeds,
       Item: {
-        // The attributes of the item to be created
         feedid: uuid.v1(),
         idx: d.data.idx,
         aqi: d.data.aqi,
@@ -45,10 +46,14 @@ export const main = handler(async (event, context) => {
 
     try {
       await dynamoDb.put(params);
-    } catch (e) {
-      console.log(e);
+      return {
+        statusCode: 200,
+      };
+    } catch (error) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: error.message }),
+      };
     }
   }
-
-  return dataList;
 });
