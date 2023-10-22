@@ -2,15 +2,17 @@ import handler from '../../libs/handler-lib';
 import dynamoDb from '../../libs/dynamodb-lib';
 
 export const main = handler(async (event, context) => {
-  const params = {
-    TableName: process.env.tableNameStations,
+  const stationKey = event.pathParameters.id;
+
+  const dbParams = {
+    TableName: process.env.TABLE_NAME_STATIONS,
     Key: {
-      stationid: event.pathParameters.id,
+      stationid: stationKey,
     },
   };
 
   try {
-    await dynamoDb.delete(params);
+    await dynamoDb.delete(dbParams);
     return {
       statusCode: 200,
     };

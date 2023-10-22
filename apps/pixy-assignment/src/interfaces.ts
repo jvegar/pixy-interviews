@@ -1,5 +1,5 @@
 export interface Station {
-  stationid: string;
+  stationId: string;
   idx: number;
   country: string;
   city: string;
@@ -7,13 +7,13 @@ export interface Station {
   createdAt: number;
 }
 
-export interface Station_Params {
+export interface TableParams {
   TableName: string;
-  Item: Station;
+  Item: Station | Feed;
 }
 
 export interface Feed {
-  feedid: string;
+  feedId: string;
   idx: string;
   aqi: number;
   time: string;
@@ -23,7 +23,12 @@ export interface Feed {
   createdAt: number;
 }
 
-export interface Feed_Params {
-  TableName: string;
-  Item: Feed;
+export enum AqiLevels {
+  UNDEFINED = 'Undefined',
+  GOOD = 'Good',
+  MODERATE = 'Moderate',
+  UNHEALTHY_SENSITIVE_GROUPS = 'Unhealty for Sensisitive Groups',
+  UNHEALTHY = 'Unhealthy',
+  VERY_UNHEALTHY = 'Very Unhealthy',
+  HAZARDOUS = 'Hazardous',
 }

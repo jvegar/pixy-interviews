@@ -4,7 +4,7 @@ import dynamoDb from '../../libs/dynamodb-lib';
 export const main = handler(async (event, context) => {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: process.env.tableNameStations,
+    TableName: process.env.TABLE_NAME_STATIONS,
     Key: {
       stationid: event.pathParameters.id,
     },

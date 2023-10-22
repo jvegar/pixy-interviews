@@ -1,6 +1,6 @@
 export default function handler(lambda) {
   return async function (event, context) {
-    let body, statusCode;
+    let body: any, statusCode: number;
 
     try {
       // Run the Lambda

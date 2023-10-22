@@ -2,8 +2,8 @@ import handler from '../../libs/handler-lib';
 import dynamoDb from '../../libs/dynamodb-lib';
 
 export const main = handler(async (event, context) => {
-  const params = {
-    TableName: process.env.tableNameStations,
+  const dbParams = {
+    TableName: process.env.TABLE_NAME_STATIONS,
     Key: {
       stationid: event.pathParameters.stationid,
       idx: event.pathParameters.idx,
@@ -11,7 +11,7 @@ export const main = handler(async (event, context) => {
   };
 
   try {
-    const result = await dynamoDb.get(params);
+    const result = await dynamoDb.get(dbParams);
     return {
       statusCode: 200,
       body: JSON.stringify(result.Item),

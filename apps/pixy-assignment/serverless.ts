@@ -8,10 +8,10 @@ sls.plugins = ['serverless-webpack', 'serverless-offline'];
 sls.provider.environment = {
   STAGE: '${self:custom.stage}',
   AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1,
-  tableNameStations: '${self:custom.tableNameStations}',
-  tableNameFeeds: '${self:custom.tableNameFeeds}',
-  waqi_token: '${self:custom.waqi_token}',
-  waqi_baseurl: '${self:custom.waqi_baseurl}',
+  TABLE_NAME_STATIONS: '${self:custom.tableNameStations}',
+  TABLE_NAME_FEEDS: '${self:custom.tableNameFeeds}',
+  WAQI_TOKEN: '${self:custom.waqi_token}',
+  WAQI_BASE_URL: '${self:custom.waqi_baseurl}',
   twitter_consumer_key: '${self:custom.twitter_consumer_key}',
   twitter_consumer_secret: '${self:custom.twitter_consumer_secret}',
   twitter_token_key: '${self:custom.twitter_token_key}',
@@ -60,7 +60,7 @@ sls.functions = {
     ],
   },
   getFeed: {
-    handler: 'src/feedProcessor/function.main',
+    handler: 'src/feed-processor/function.main',
     events: [
       {
         http: { method: 'get', path: '/feeduris' },
@@ -68,7 +68,7 @@ sls.functions = {
     ],
   },
   publishFeed: {
-    handler: 'src/twitterPublisher/function.handler',
+    handler: 'src/twitter-publisher/function.handler',
     events: [
       {
         stream: {

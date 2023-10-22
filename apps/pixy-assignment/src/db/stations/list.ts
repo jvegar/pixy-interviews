@@ -2,12 +2,12 @@ import handler from '../../libs/handler-lib';
 import dynamoDb from '../../libs/dynamodb-lib';
 
 export const main = handler(async (event, context) => {
-  const params = {
-    TableName: process.env.tableNameStations,
+  const dbParams = {
+    TableName: process.env.TABLE_NAME_STATIONS,
   };
 
   try {
-    const result = await dynamoDb.scan(params);
+    const result = await dynamoDb.scan(dbParams);
     return {
       statusCode: 200,
       body: JSON.stringify(result.Items),
