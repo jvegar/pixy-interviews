@@ -40,7 +40,7 @@ export const main = handler(async (event, context) => {
 
     const feedItem: Feed = {
       feedId: uuid.v1(),
-      idx: feedData.data.idx,
+      idx: feedData.data.idx.toString(),
       aqi: feedData.data.aqi,
       time: feedData.data.time.iso,
       level: level,
@@ -50,7 +50,7 @@ export const main = handler(async (event, context) => {
     };
 
     const params: TableParams = {
-      TableName: process.env.tableNameFeeds,
+      TableName: process.env.TABLE_NAME_FEEDS,
       Item: feedItem,
     };
 
